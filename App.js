@@ -1,12 +1,15 @@
-import { setState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import ExpressionBox from "./components/ExpressionBox";
+import Constants from "expo-constants";
+import ExpressionBox from "./components/ExpressionBox.js";
+import ResultBox from "./components/ResultBox";
+import NumPad from "./components/NumPad";
 
 export default function App() {
-	[expression, setExpression] = setState("This is dummy expression");
-	[result, setResult] = setState("This is dummy result");
+	const [expression, setExpression] = useState("This is dummy expression");
+	const [result, setResult] = useState("This is dummy result");
 
-	// assumbleExpression() {
+	// assembleExpression() {
 
 	// }
 
@@ -16,17 +19,17 @@ export default function App() {
 
 	// rollbackExpression() {
 
+	//   assembleExpression={assembleExpression}
+	//       calculateResult={calculateResult}
+	//       deletePressed={rollbackExpression}
+
 	// }
 
 	return (
 		<View style={styles.container}>
 			<ExpressionBox expression={expression} />
-			{/* <ResultBox/>
-      <NumPad
-        assembleExpression={}
-        calculateResult={}
-        deletePressed={}
-      /> */}
+			<ResultBox result={result} />
+			<NumPad />
 		</View>
 	);
 }
@@ -34,8 +37,6 @@ export default function App() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center"
+		paddingTop: Constants.statusBarHeight
 	}
 });
