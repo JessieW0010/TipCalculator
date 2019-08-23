@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 
 export default function Key(props) {
 	function onPress() {
-		// code later
+		props.echoSymbol(props.symbol);
 	}
 
 	return (

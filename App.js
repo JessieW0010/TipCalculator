@@ -5,31 +5,43 @@ import ExpressionBox from "./components/ExpressionBox.js";
 import ResultBox from "./components/ResultBox";
 import NumPad from "./components/NumPad";
 
+const math = require("mathjs");
+
 export default function App() {
-	const [expression, setExpression] = useState("This is dummy expression");
-	const [result, setResult] = useState("This is dummy result");
+	const [expression, setExpression] = useState("");
+	const [result, setResult] = useState("");
+	const [history, setHistory] = useState([]);
 
-	// assembleExpression() {
+	function assembleExpression(symbol) {
+		setExpression(expression + symbol);
+		setHistory([...history, expression]);
+	}
 
-	// }
+	function calculateResult() {
+		let result;
+		try {
+			result = math.evaluate(expression);
+		} catch (e) {
+			result = "Error";
+		}
+		setResult(result);
+	}
 
-	// calculateResult() {
-
-	// }
-
-	// rollbackExpression() {
-
-	//   assembleExpression={assembleExpression}
-	//       calculateResult={calculateResult}
-	//       deletePressed={rollbackExpression}
-
-	// }
+	function rollbackExpression() {
+		if (expression) {
+			setExpression(history.pop());
+		}
+	}
 
 	return (
 		<View style={styles.container}>
 			<ExpressionBox expression={expression} />
 			<ResultBox result={result} />
-			<NumPad />
+			<NumPad
+				assembleExpression={assembleExpression}
+				calculateResult={calculateResult}
+				deletePressed={rollbackExpression}
+			/>
 		</View>
 	);
 }
