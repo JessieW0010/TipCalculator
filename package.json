@@ -12,7 +12,7 @@
     "expo-constants": "^6.0.0",
     "expo-file-system": "^6.0.2",
     "expo-font": "^6.0.1",
-    "mathjs": "^6.1.0",
+    "mathjs": "^7.5.1",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
